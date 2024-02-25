@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="337b3fc1-238a-42f1-a122-a1909336a5c6" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="50298901-5c83-463f-a7e6-8f1e568156db" file="app.properties" />
+	<flow name="hello-worldFlow" doc:id="dde0da43-42e5-43cc-9c80-1a9b37c3321b" >
+		<http:listener doc:name="Listener" doc:id="ed4e053b-fd1f-409a-863e-79c2d19905da" config-ref="HTTP_Listener_config" path="${http.path}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="3daee132-cb36-4481-9fb2-6de8ab2cec89" message='#["Welcome to redbull team"]'/>
+		<set-payload value='#["Welcome to redbull team"]' doc:name="Set Payload" doc:id="30ddbca5-e695-4189-8077-2421baf64542" />
+	</flow>
+</mule>
